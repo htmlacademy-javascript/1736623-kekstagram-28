@@ -1,18 +1,12 @@
-function stringLength(someString, strLength) {
-  if (someString.length <= strLength) {
-    return true;
-  }
-
-  return false;
+function checkStringLength(someString, strLength) {
+  return someString.length <= strLength;
 }
 
-stringLength('12345678910111213141', 20);
+checkStringLength('12345678910111213141', 20);
 
-function stringPoli(someString) {
+function isPolindrom(someString) {
   let lowerString = someString.toLowerCase();
-  if (lowerString[lowerString.length - 1] === ' ') {
-    lowerString = lowerString.slice(0, -1);
-  }
+  lowerString = lowerString.replaceAll(' ', '');
 
   for (let i = 0, j = lowerString.length - 1; i < j; i++, j--) {
     if (lowerString[i] !== lowerString[j]) {
@@ -23,9 +17,9 @@ function stringPoli(someString) {
   return true;
 }
 
-stringPoli('ДовОд');
-stringPoli('Kekc');
-stringPoli('Лёша на полке клопа нашёл ');
+isPolindrom('ДовОд');
+isPolindrom('Kekc');
+isPolindrom('Лёша на полке клопа нашёл ');
 
 function positivNumber (someString) {
   let finalnumber = ' ';
