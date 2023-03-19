@@ -27,7 +27,7 @@ const getRandomInteger = (a, b) => {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-function commentsArray () {
+const commentsArray = () =>{
   const userComment = [];
   for (let i = 0; i < getRandomInteger(0, 100); i++) {
     userComment[i] = {
@@ -38,9 +38,9 @@ function commentsArray () {
     };
   }
   return userComment;
-}
+};
 
-function photoPublication (numberOfPublications) {
+const photoPublication = (numberOfPublications) => {
   const photoDescription = [];
   for (let i = 0; i <= numberOfPublications; i++) {
     photoDescription[i] = {
@@ -52,6 +52,6 @@ function photoPublication (numberOfPublications) {
     };
   }
   return photoDescription;
-}
+};
 
 photoPublication (24);
