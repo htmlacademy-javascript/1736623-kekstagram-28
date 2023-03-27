@@ -2,7 +2,7 @@ function checkStringLength(someString, strLength) {
   return someString.length <= strLength;
 }
 
-checkStringLength('12345678910111213141', 20);
+checkStringLength('1234567891011121314168', 20);
 
 function isPolindrom(someString) {
   let lowerString = someString.toLowerCase();
