@@ -1,3 +1,3 @@
-import {photoPublication} from './data.js';
+import {postRender} from './thumbnail_rendering.js';
 
-photoPublication(24);
+postRender();

@@ -33,11 +33,11 @@ const commentsArray = () =>{
   return userComment;
 };
 
-const photoPublication = (numberOfPublications) => {
+const photoPublication = () => {
   const photoDescription = [];
-  for (let i = 0; i <= numberOfPublications; i++) {
+  for (let i = 1; i <= 25; i++) {
     photoDescription[i] = {
-      id: i + 1,
+      id: i,
       url: `photos/${i}.jpg`,
       description: 'фото реки и деревни у неё',
       likes: Math.floor(Math.random() * (200 - 15 + 1)) + 15,
