@@ -3,12 +3,13 @@ import {photoPublication} from './data.js';
 const templateFragment = document.querySelector('#picture').content;
 const template = templateFragment.querySelector('a');
 
+
 const fragment = document.createDocumentFragment();
 
 const postRender = () => {
   const dataArray = photoPublication();
 
-  for (let i = 1; i <= dataArray.length; i++) {
+  dataArray.forEach((element) => {
     const block = template.cloneNode(true);
 
     const picture = block.querySelector('.picture__img');
@@ -16,14 +17,15 @@ const postRender = () => {
     const pictureComments = pictureInfo.querySelector('.picture__comments');
     const pictureLikes = pictureInfo.querySelector('.picture__likes');
 
-    picture.src = dataArray[i].url;
-    pictureComments.append(dataArray[i].comments.length);
-    pictureLikes.append(dataArray[i].likes);
+    picture.src = element.url;
+    pictureComments.append(element.comments.length);
+    pictureLikes.append(element.likes);
 
     fragment.append(block);
-  }
+  });
 
-  return fragment;
+  const pictures = document.querySelector('.pictures').prepend(fragment);
+  return pictures;
 };
 
 export {postRender};
