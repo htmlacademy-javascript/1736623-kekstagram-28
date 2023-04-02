@@ -1,10 +1,12 @@
 import {photoPublication} from './data.js';
+import {openModal} from './on-picture-render.js';
 
 const templateFragment = document.querySelector('#picture').content;
 const template = templateFragment.querySelector('a');
 
-
 const fragment = document.createDocumentFragment();
+
+const pictures = document.querySelector('.pictures');
 
 const postRender = () => {
   const dataArray = photoPublication();
@@ -21,10 +23,16 @@ const postRender = () => {
     pictureComments.append(element.comments.length);
     pictureLikes.append(element.likes);
 
+    const pictureId = element.id - 1;
+
+    block.addEventListener('click', () => {
+      openModal(element, pictureId);
+    });
+
     fragment.append(block);
   });
 
-  const pictures = document.querySelector('.pictures').prepend(fragment);
+  pictures.prepend(fragment);
   return pictures;
 };
 

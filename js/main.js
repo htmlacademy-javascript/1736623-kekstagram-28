@@ -1,3 +1,4 @@
-import {postRender} from './thumbnail_rendering.js';
+import {postRender} from './pictures-rendering.js';
 
 postRender();
+
