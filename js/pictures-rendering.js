@@ -23,10 +23,10 @@ const postRender = () => {
     pictureComments.append(element.comments.length);
     pictureLikes.append(element.likes);
 
-    const pictureId = element.id - 1;
+    //const pictureId = element.id - 1;
 
     block.addEventListener('click', () => {
-      openModal(element, pictureId);
+      openModal(element);
     });
 
     fragment.append(block);

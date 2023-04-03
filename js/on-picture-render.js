@@ -26,13 +26,6 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-function closeModal () {
-  bigPicturePopup.classList.add('hidden');
-  document.querySelector('body').classList.remove('modal-open');
-
-  document.removeEventListener('keydown', onDocumentKeydown);
-}
-
 const openModal = (data) => {
   document.querySelector('body').classList.add('modal-open');
   document.querySelector('.social__comment-count').classList.add('hidden');
@@ -51,6 +44,16 @@ const openModal = (data) => {
 
   document.addEventListener('keydown', onDocumentKeydown);
 };
+
+function closeModal () {
+  bigPicturePopup.classList.add('hidden');
+  document.querySelector('body').classList.remove('modal-open');
+
+  socialComments.querySelectorAll('li').forEach((element) => element.remove());
+
+  document.removeEventListener('keydown', onDocumentKeydown);
+}
+
 
 bigPicturePopupClose.addEventListener('keydown', (evt) => {
   if (isEscapeKey(evt)) {
