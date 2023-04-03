@@ -47,4 +47,4 @@ const photoPublication = () => {
   return photoDescription;
 };
 
-export {photoPublication};
+export {photoPublication, commentsArray};
