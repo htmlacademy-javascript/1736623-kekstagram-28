@@ -10,6 +10,8 @@ const socialCaption = bigPicturePopup.querySelector('.social__caption');
 const commentsLoader = bigPicturePopup.querySelector('.comments-loader');
 const socialCommentCount = bigPicturePopup.querySelector('.social__comment-count');
 
+let commentCounter = 5;
+
 const createTemplate = (avatar, name, text) =>
   `<li class="social__comment">
     <img
@@ -27,31 +29,37 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-let currentCommentsCount = 5;
-
 const moreComments = (data) => {
-  if (currentCommentsCount < data.comments.length) {
-    data.comments.map((item) => {
+
+  socialComments.querySelectorAll('li').forEach((element) => element.remove());
+  if (commentCounter < data.comments.length) {
+    data.comments.map((item, index) => {
       const comment = createTemplate(item.avatar, item.name, item.message);
-      if (item.id < currentCommentsCount) {
+      if (index < commentCounter) {
         socialComments.insertAdjacentHTML('beforeend', comment);
       }
     });
-    socialCommentCount.innerHTML = `${currentCommentsCount} из <span class="comments-count">${data.comments.length}</span> комментариев`;
-    currentCommentsCount += 5;
-  } else {
+    socialCommentCount.innerHTML = `<span class="comments-count-current">${commentCounter}</span> из <span class="comments-count">${data.comments.length}</span> комментариев`;
+    commentCounter += 5;
+  }else {
     data.comments.map((item) => {
       const comment = createTemplate(item.avatar, item.name, item.message);
-      if (item.id < data.comments.length + 1) {
-        socialComments.insertAdjacentHTML('beforeend', comment);
-      }
+      socialComments.insertAdjacentHTML('beforeend', comment);
     });
-    currentCommentsCount = data.comments.length;
-    socialCommentCount.innerHTML = `${currentCommentsCount} из <span class="comments-count">${data.comments.length}</span> комментариев`;
+    socialCommentCount.innerHTML = `${data.comments.length} из <span class="comments-count">${data.comments.length}</span> комментариев`;
+    commentsLoader.classList.add('hidden');
   }
 };
 
+let dataElement;
+
+const commentLoader = () => {
+  moreComments(dataElement);
+};
+
 const openModal = (data) => {
+  dataElement = data;
+  commentCounter = 5;
   document.querySelector('body').classList.add('modal-open');
   bigPicturePopup.classList.remove('hidden');
 
@@ -62,25 +70,24 @@ const openModal = (data) => {
   likesCount.textContent = data.likes;
 
   moreComments(data);
-
-  commentsLoader.addEventListener('click', () => {
-    socialComments.querySelectorAll('li').forEach((element) => element.remove());
-    moreComments(data);
-  });
+  commentsLoader.addEventListener('click', commentLoader);
 
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
 function closeModal () {
+  commentsLoader.classList.remove('hidden');
   bigPicturePopup.classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
 
   socialComments.querySelectorAll('li').forEach((element) => element.remove());
-  currentCommentsCount = 5;
+
+  commentCounter = 5;
+
+  commentsLoader.removeEventListener('click', commentLoader);
 
   document.removeEventListener('keydown', onDocumentKeydown);
 }
-
 
 bigPicturePopupClose.addEventListener('keydown', (evt) => {
   if (isEscapeKey(evt)) {
