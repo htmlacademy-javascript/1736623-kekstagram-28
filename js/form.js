@@ -1,5 +1,6 @@
 import {isEscapeKey} from './util.js';
 import {tagCheck} from './validate.js';
+import {resetFilters} from './photo-effect-sliders.js';
 
 const onFileInput = document.querySelector('.img-upload__input');
 const onCloseInput = document.querySelector('.img-upload__cancel');
@@ -47,6 +48,7 @@ function closeModalUpload () {
   document.querySelector('body').classList.remove('modal-open');
   uploadOverlay.classList.add('hidden');
   document.querySelector('#upload-file').value = '';
+  resetFilters();
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
