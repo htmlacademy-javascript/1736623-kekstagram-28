@@ -45,8 +45,10 @@ const onSubmitUpload = (evt) => {
   if (pristine.validate()) {
     blockSubmitButton();
     sendData(() => {
-      renderSuccessMessage(resetFilters(), setDefaulValue());
+      renderSuccessMessage();
       unblockSubmitButton();
+      resetFilters();
+      setDefaulValue();
     }, () => {
       renderErrorMessage();
       unblockSubmitButton();
@@ -55,7 +57,7 @@ const onSubmitUpload = (evt) => {
 };
 
 const isInputInFocus = () => document.activeElement === textHashtags || document.activeElement === textDescription;
-const isMassageShow = () => document.querySelector('.error');
+const isMassageShow = () => document.querySelector('.success') || document.querySelector('.error');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt) && !isInputInFocus() && !isMassageShow()) {
