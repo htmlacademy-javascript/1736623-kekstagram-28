@@ -102,6 +102,7 @@ const onSliderUpdate = () => {
 const resetFilters = () => {
   chosenEffect = defaultEffect;
   updateSlider();
+  //фокус
 };
 
 noUiSlider.create(slider, {

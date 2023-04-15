@@ -1,7 +1,7 @@
-const getData = (postRender) => {
-  fetch('https://28.javascript.pages.academy/kekstagram/data').then((response) => response.json()).then((render) => {
-    postRender(render);
-  });
+import { initialization } from './filters.js';
+
+const getData = () => {
+  fetch('https://28.javascript.pages.academy/kekstagram/data').then((response) => response.json()).then((data) => initialization(data));
 };
 
 const sendData = (onSuccess, onFail, body) => {

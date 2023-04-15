@@ -8,6 +8,7 @@ const fragment = document.createDocumentFragment();
 const pictures = document.querySelector('.pictures');
 
 const postRender = (dataArray) => {
+
   dataArray.forEach((element) => {
     const block = template.cloneNode(true);
 
