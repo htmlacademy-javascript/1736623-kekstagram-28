@@ -45,8 +45,10 @@ const onSubmitUpload = (evt) => {
   if (pristine.validate()) {
     blockSubmitButton();
     sendData(() => {
-      renderSuccessMessage(resetFilters(), setDefaulValue());
+      renderSuccessMessage();
       unblockSubmitButton();
+      resetFilters();
+      setDefaulValue();
     }, () => {
       renderErrorMessage();
       unblockSubmitButton();

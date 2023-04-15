@@ -28,12 +28,11 @@ function closeModul(evt) {
   templateClone = null;
 }
 
-const renderSuccessMessage = (resetScale, resetFilters) => {
+const renderSuccessMessage = () => {
   createSuccess();
-  resetScale();
-  resetFilters();
   document.addEventListener('keydown', onDocumentKeydown);
 };
+
 
 const renderErrorMessage = () => {
   createError();
