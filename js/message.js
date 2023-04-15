@@ -16,7 +16,6 @@ const createError = () => {
 };
 
 const onDocumentKeydown = (evt) => {
-  console.log('CLOSE');
   if (evt.key === 'Escape') {
     closeModul(evt);
   }
