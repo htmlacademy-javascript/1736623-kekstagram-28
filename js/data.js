@@ -1,6 +1,6 @@
 import {getRandomInteger, getRandomArrayElement} from './util.js';
 
-const names = [
+const NAMES = [
   'Иван',
   'Хуан Себастьян',
   'Мария',
@@ -11,7 +11,7 @@ const names = [
   'Вашингтон',
 ];
 
-const comments = [
+const COMMENTS = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -21,22 +21,22 @@ const comments = [
 ];
 
 const commentsArray = () =>{
-  const userComment = [];
+  const userComments = [];
   for (let i = 0; i < getRandomInteger(0, 100); i++) {
-    userComment[i] = {
+    userComments[i] = {
       id: i,
       avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-      message: getRandomArrayElement(comments),
-      name: getRandomArrayElement(names),
+      message: getRandomArrayElement(COMMENTS),
+      name: getRandomArrayElement(NAMES),
     };
   }
-  return userComment;
+  return userComments;
 };
 
-const photoPublication = () => {
-  const photoDescription = [];
+const fillingPublicationsArray = () => {
+  const photoDescriptions = [];
   for (let i = 0; i < 25; i++) {
-    photoDescription.push({
+    photoDescriptions.push({
       id: i + 1,
       url: `photos/${i + 1}.jpg`,
       description: 'фото реки и деревни у неё',
@@ -44,7 +44,7 @@ const photoPublication = () => {
       comments: commentsArray(),
     });
   }
-  return photoDescription;
+  return photoDescriptions;
 };
 
-export {photoPublication, commentsArray};
+export {fillingPublicationsArray, commentsArray};

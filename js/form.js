@@ -4,6 +4,7 @@ import {resetFilters} from './photo-effect-sliders.js';
 import {setDefaulValue} from './scale.js';
 import {sendData} from './api.js';
 import {renderSuccessMessage, renderErrorMessage} from './message.js';
+import { getUserPicture } from './show-user-picture.js';
 
 const onFileInput = document.querySelector('.img-upload__input');
 const onCloseInput = document.querySelector('.img-upload__cancel');
@@ -20,12 +21,12 @@ const pristine = new Pristine(form, {
   errorTextClass: 'img-upload__field-wrapper--error',
 });
 
-const errorText = 'Ошибка валидации тегов!';
+const TEXT_ERROR = 'Ошибка валидации тегов!';
 
 pristine.addValidator(
   textHashtags,
   tagCheck,
-  errorText
+  TEXT_ERROR
 );
 
 const blockSubmitButton = () => {
@@ -54,7 +55,7 @@ const onSubmitUpload = (evt) => {
 };
 
 const isInputInFocus = () => document.activeElement === textHashtags || document.activeElement === textDescription;
-const isMassageShow = () => document.querySelector('.success') || document.querySelector('.error');
+const isMassageShow = () => document.querySelector('.error');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt) && !isInputInFocus() && !isMassageShow()) {
@@ -66,6 +67,7 @@ const onDocumentKeydown = (evt) => {
 const openModalUpload = () => {
   document.querySelector('body').classList.add('modal-open');
   uploadOverlay.classList.remove('hidden');
+  getUserPicture();
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
