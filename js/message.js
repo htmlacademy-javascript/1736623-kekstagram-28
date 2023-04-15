@@ -16,7 +16,8 @@ const createError = () => {
 };
 
 const onDocumentKeydown = (evt) => {
-  if (evt.key === 'Escape' && templateClone) {
+  console.log('CLOSE');
+  if (evt.key === 'Escape') {
     closeModul(evt);
   }
 };
@@ -28,15 +29,15 @@ function closeModul(evt) {
   templateClone = null;
 }
 
-const renderSuccessMessage = () => {
+const renderSuccessMessage = (resetScale, resetFilters) => {
   createSuccess();
+  resetScale();
+  resetFilters();
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
-const renderErrorMessage = (resetScale, resetFilters) => {
+const renderErrorMessage = () => {
   createError();
-  resetScale();
-  resetFilters();
   document.addEventListener('keydown', onDocumentKeydown);
 };
 

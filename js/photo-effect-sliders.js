@@ -1,3 +1,4 @@
+const form = document.querySelector('.img-upload__form');
 const FILTERS = [
   {
     name:'none',
@@ -102,7 +103,7 @@ const onSliderUpdate = () => {
 const resetFilters = () => {
   chosenEffect = defaultEffect;
   updateSlider();
-  //фокус
+  form.reset();
 };
 
 noUiSlider.create(slider, {
