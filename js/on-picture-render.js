@@ -29,7 +29,7 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-const moreComments = (data) => {
+const onMoreComments = (data) => {
 
   socialComments.querySelectorAll('li').forEach((element) => element.remove());
   if (commentCounter < data.comments.length) {
@@ -54,7 +54,7 @@ const moreComments = (data) => {
 let dataElement;
 
 const commentLoader = () => {
-  moreComments(dataElement);
+  onMoreComments(dataElement);
 };
 
 const openModal = (data) => {
@@ -69,7 +69,7 @@ const openModal = (data) => {
 
   likesCount.textContent = data.likes;
 
-  moreComments(data);
+  onMoreComments(data);
   commentsLoader.addEventListener('click', commentLoader);
 
   document.addEventListener('keydown', onDocumentKeydown);

@@ -24,5 +24,12 @@ const increaseSize = () => {
   }
 };
 
+const setDefaulValue = () => {
+  imgPreview.style.transform = 'scale(1)';
+  scaleValue.value = `${100}%`;
+};
+
 onScaleSmaller.addEventListener('click', decreaseSize);
 onScaleBigger.addEventListener('click', increaseSize);
+
+export {setDefaulValue};

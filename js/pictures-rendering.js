@@ -1,4 +1,3 @@
-import {photoPublication} from './data.js';
 import {openModal} from './on-picture-render.js';
 
 const templateFragment = document.querySelector('#picture').content;
@@ -8,8 +7,7 @@ const fragment = document.createDocumentFragment();
 
 const pictures = document.querySelector('.pictures');
 
-const postRender = () => {
-  const dataArray = photoPublication();
+const postRender = (dataArray) => {
 
   dataArray.forEach((element) => {
     const block = template.cloneNode(true);
